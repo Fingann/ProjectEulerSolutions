@@ -41,6 +41,6 @@ namespace ProjectEulerSolutions
         [Test]
         public void Test008() => Assert.AreEqual("23514624000", new Problem8().Run());
         [Test]
-        public void Test010() => Assert.AreEqual("23514624000", new Problem10().Run());
+        public void Test010() => Assert.AreEqual("142913828922", new Problem10().Run());
     }
 }
