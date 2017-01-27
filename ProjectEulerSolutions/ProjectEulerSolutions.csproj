@@ -53,6 +53,9 @@
     <Compile Include="004\Problem4.cs" />
     <Compile Include="005\Problem5.cs" />
     <Compile Include="006\Problem6.cs" />
+    <Compile Include="007\Problem7.cs" />
+    <Compile Include="008\Problem8.cs" />
+    <Compile Include="010\Problem10.cs" />
     <Compile Include="EulerSolution.cs" />
     <Compile Include="EulerTests.cs" />
     <Compile Include="Program.cs" />

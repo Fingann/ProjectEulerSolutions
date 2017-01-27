@@ -44,6 +44,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Integers\IntegerExtentions.cs" />
+    <Compile Include="Math\Factorization.cs" />
+    <Compile Include="Math\PrimeTool.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
