@@ -13,6 +13,12 @@ namespace ProjectEulerSolutions._014
 
     class Problem14: IEulerSolution
     {
+        struct CollatzSequenceNumber
+        {
+            public long Number { get; set; }
+            public long Chain { get; set; }
+        } 
+
         public string Run()
         {
 
@@ -22,28 +28,28 @@ namespace ProjectEulerSolutions._014
 
         }
 
-        public int EnumerateNumbers()
+        public long EnumerateNumbers()
         {
             var result = 0;
-            var umb = 0
-
-            foreach (var number in 1.Range(10000))
+            var heighetsNumber = 0;
+            var collazList = new List<CollatzSequenceNumber>();
+            
+            foreach (long number in 1.Range(1000000))
             {
-                result = Math.Max(result, Selector(number));
+                long chain = CalculateChain(number);
+                collazList.Add(new CollatzSequenceNumber() { Chain = chain, Number = number });
+                
             }
             
 
-            return 1.Range(1000000).Select()
+            return collazList.OrderByDescending(x=> x.Chain).First().Number;
+            
         }
 
-        private int Selector(int i)
+        private int CalculateChain(long i)
         {
-           
-          
-
-            var chain = 0;
-            var CollatzNumber = i;
-            var finished = false;
+            var chain = 1;
+            
 
             var sequence = i;
             while (sequence != 1)
