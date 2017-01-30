@@ -57,6 +57,8 @@
     <Compile Include="008\Problem8.cs" />
     <Compile Include="010\Problem10.cs" />
     <Compile Include="011\Problem11.cs" />
+    <Compile Include="012\Problem12.cs" />
+    <Compile Include="013\Problem13.cs" />
     <Compile Include="EulerSolution.cs" />
     <Compile Include="EulerTests.cs" />
     <Compile Include="Program.cs" />
@@ -72,6 +74,7 @@
       <Name>ExtentionsLib</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

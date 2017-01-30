@@ -30,5 +30,6 @@ namespace ProjectEulerSolutions._010
             return primes;
         }
 
+
     }
 }

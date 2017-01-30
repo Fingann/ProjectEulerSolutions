@@ -11,7 +11,10 @@
         {
             var fibonacciNumbers = new List<long> { startNumberA, startNumberB };
 
-            for (var i = 2; i < ammountOfNumbers; i++) fibonacciNumbers.Add(fibonacciNumbers[i - 2] + fibonacciNumbers[i - 1]);
+            for (var i = 2; i < ammountOfNumbers; i++)
+            {
+                fibonacciNumbers.Add(fibonacciNumbers[i - 2] + fibonacciNumbers[i - 1]);
+            }
 
             return fibonacciNumbers;
         }

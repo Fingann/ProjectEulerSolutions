@@ -1,33 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ProjectEulerSolutions._005
+﻿namespace ProjectEulerSolutions._005
 {
-    class Problem5 : IEulerSolution
+    internal class Problem5 : IEulerSolution
     {
-        public string Run()
+        public int FindEvenlyDivisibleNumber(int maxDivisible)
         {
-            return FindEvenlyDivisibleNumber(20).ToString();
-        }
-
-
-        public int FindEvenlyDivisibleNumber( int maxDivisible)
-        {
-            bool found = false;
+            var found = false;
             var evenlyDivisiblenumber = 1;
             var count = 1;
 
             while (!found)
             {
-                for (int i = maxDivisible; i > 0; i--)
+                for (var i = maxDivisible; i > 0; i--)
                 {
-                    if ((count % i) != 0)
-                    {
-                        break;
-                    }
+                    if (count % i != 0) break;
 
                     if (i != 1) continue;
 
@@ -38,10 +23,12 @@ namespace ProjectEulerSolutions._005
                 count++;
             }
 
-
             return evenlyDivisiblenumber;
         }
 
-
+        public string Run()
+        {
+            return this.FindEvenlyDivisibleNumber(20).ToString();
+        }
     }
 }

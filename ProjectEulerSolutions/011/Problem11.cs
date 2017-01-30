@@ -1,21 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ProjectEulerSolutions._011
+﻿namespace ProjectEulerSolutions._011
 {
-    using System.ComponentModel;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
 
     using ExtentionsLib.String;
-    
-    class Problem11:IEulerSolution
-    {
-        const int NumberofAdjecent = 3;
 
-        const string NumberString =
-                    @"
+    internal class Problem11 : IEulerSolution
+    {
+        private const int NumberofAdjecent = 4;
+
+        private const string NumberString = @"
                     08 02 22 97 38 15 00 40 00 75 04 05 07 78 52 12 50 77 91 08
                     49 49 99 40 17 81 18 57 60 87 17 40 98 43 69 48 04 56 62 00
                     81 49 31 73 55 79 14 29 93 71 40 67 53 88 30 03 49 13 36 65
@@ -37,108 +32,145 @@ namespace ProjectEulerSolutions._011
                     20 73 35 29 78 31 90 01 74 31 49 71 48 86 81 16 23 57 05 54
                     01 70 54 71 83 51 54 69 16 92 33 48 61 43 52 01 89 19 67 48";
 
-
-
-        public string Run()
-        {
-            this.CreateList();
-            IterateList();
-            return "wow";
-        }
+        public int HighestProductSum { get; set; }
 
         public List<List<int>> List { get; set; }
 
-        public long GreatestProduct { get; set; } = 0;
+
+        public void CompareHighest(int subject)
+        {
+            HighestProductSum = Math.Max(subject, HighestProductSum);
+        }
 
         public void CreateList()
-        {            
+        {
             var digits = NumberString.
-            // split string into rows
-            Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries)
-            .Select(
-            line =>
-            // split row into columns
-            line.Split(' ')
-                // ignore any whitespace
-                .Where(token => token.IsInteger())
-                // convert string to number
-                .Select(token => int.Parse(token))
-                .ToList()
-            )
-            .ToList();
-            List = digits;
+
+                // split string into rows
+                Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries).Select(
+                    line =>
+
+                        // split row into columns
+                            line.Split(' ')
+
+                                // ignore any whitespace
+                                .Where(token => token.IsInteger())
+
+                                // convert string to number
+                                .Select(token => int.Parse(token)).ToList()).ToList();
+            this.List = digits;
         }
 
         public void IterateList()
         {
-            bool canUp = true;
-            bool canDown = true;
-            bool canLeft = true;
-            bool canRight = true;
+            var height = this.List.Count;
+            var length = this.List[0].Count;
 
-            var height = List.Count;
-            var length = List[0].Count;
-
-            for (int i = 0; i < height; i++)
+            for (var i = 0; i < height; i++)
             {
-                for (int j = 0; j < length; j++)
+                for (var j = 0; j < length; j++)
                 {
-                    //CheckDirectionUp(i, j);
-                    //CheckDirectionDown(i, j);
-                    //CheckDirectionLeft(i, j);
-                    CheckDirectionRight(i, j);
-                    //CheckDirectionDigR(i, j);
-                    //CheckDirectionDigL(i, j);
+                    this.CheckUp(i, j);
+
+                    // redundant, included in right
+                    // CheckLeft(i, j);
+                    this.CheckRight(i, j);
+                    this.CheckDiagonalRight(i, j);
+                    this.CheckDiagonalLeft(i, j);
                 }
-
-
-
             }
-
-
-
-            
         }
 
-        private void CheckDirectionDigL(int i, int j)
+        public string Run()
         {
             
-
-            throw new NotImplementedException();
+            this.CreateList();
+            this.IterateList();
+            return this.HighestProductSum.ToString();
         }
 
-        private void CheckDirectionDigR(int i, int j)
+        private void CheckDiagonalLeft(int i, int j)
         {
-            throw new NotImplementedException();
-        }
+            var canUp = i > NumberofAdjecent;
+            var canLeft = j > NumberofAdjecent;
 
-        private void CheckDirectionRight(int i, int j)
-        {
-           
-            bool canRight = j < List[i].Count - NumberofAdjecent;
-            if (!canRight) return;
+            var canDigL = canLeft && canUp;
+            if (!canDigL) return;
+
             var product = 1;
-            for (int k = 0; k < NumberofAdjecent; k++)
+            for (var k = 0; k < NumberofAdjecent; k++)
             {
-                product *= List[i][j + k];
+                product *= this.List[i - k][j - k];
+            }
+            this.CompareHighest(product);
+        }
+
+        private void CheckDiagonalRight(int i, int j)
+        {
+            var canUp = i > NumberofAdjecent;
+            var canRight = j < this.List[i].Count - NumberofAdjecent;
+
+            var canDigR = canRight && canUp;
+            if (!canDigR)
+            {
+                return;
             }
 
-            throw new NotImplementedException();
+            var product = 1;
+            for (var k = 0; k < NumberofAdjecent; k++)
+            {
+                product *= this.List[i - k][j + k];
+            }
+            this.CompareHighest(product);
         }
 
-        private void CheckDirectionLeft(int i, int j)
+        private void CheckLeft(int i, int j)
         {
-            throw new NotImplementedException();
+            var canLeft = j > NumberofAdjecent;
+
+            if (!canLeft) return;
+
+            var product = 1;
+            for (var k = 0; k < NumberofAdjecent; k++) product *= this.List[i][j - k];
+            this.CompareHighest(product);
         }
 
-        private void CheckDirectionDown(int i, int j)
+        private void CheckRight(int i, int j)
         {
-            throw new NotImplementedException();
+            
+
+            var canRight = j < this.List[i].Count - NumberofAdjecent;
+
+            if (!canRight)
+            {
+                return;
+            }
+
+            var product = 1;
+            for (var k = 0; k < NumberofAdjecent; k++)
+            {
+                
+                product *= this.List[i][j + k];
+            }
+
+            this.CompareHighest(product);
         }
 
-        private void CheckDirectionUp(int i, int j)
+        private void CheckUp(int i, int j)
         {
-            throw new NotImplementedException();
+            var canUp = i > NumberofAdjecent;
+
+            if (!canUp)
+            {
+                return;
+            }
+
+            var product = 1;
+            for (var k = 0; k < NumberofAdjecent; k++)
+            {
+                product *= this.List[i - k][j];
+            }
+            this.CompareHighest(product);
         }
     }
 }

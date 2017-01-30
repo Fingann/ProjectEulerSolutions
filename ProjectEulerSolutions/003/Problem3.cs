@@ -1,8 +1,8 @@
-﻿//https://projecteuler.net/problem=3 
-namespace ProjectEulerSolutions._003
+﻿namespace ProjectEulerSolutions._003
 {
     using System.Collections.Generic;
     using System.Linq;
+    using ExtentionsLib.Math;
 
     internal class Problem3 : IEulerSolution
     {
@@ -35,7 +35,7 @@ namespace ProjectEulerSolutions._003
         public string Run()
         {
             var factors = this.FindFactors(600851475143);
-            return factors.Max(factor => factor).ToString();
+            return factors.Max().ToString();
         }
     }
 }

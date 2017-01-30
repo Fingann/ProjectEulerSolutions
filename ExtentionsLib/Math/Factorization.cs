@@ -6,11 +6,24 @@ using System.Threading.Tasks;
 
 namespace ExtentionsLib.Math
 {
-    class Factorization
+    using Math = System.Math;
+
+    static public  class Factorization
     {
+        public static IEnumerable<long> getFactors(long x)
+        {
+            for (long i = 1; i * i <= x; i++)
+                if (x % i == 0)
+                {
+                    yield return i;
+                    if (i != x / i)
+                    {
+                        yield return x / i;
+                    }
+                }
+        }
 
-
-        public List<long> FindFactors(long number)
+        public static List<long> FindFactors(long number)
         {
             var factors = new List<long>();
 

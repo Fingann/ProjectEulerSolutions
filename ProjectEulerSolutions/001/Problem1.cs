@@ -14,7 +14,10 @@ namespace ProjectEulerSolutions._001
                 for (var i = 0; i < numbersBelow; i++)
                 {
                     var testsum = multiple * i;
-                    if (testsum < numbersBelow) Multiples.Add(testsum);
+                    if (testsum < numbersBelow)
+                    {
+                        Multiples.Add(testsum);
+                    }
                 }
             };
 
