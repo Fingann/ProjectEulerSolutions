@@ -20,6 +20,7 @@ namespace ProjectEulerSolutions
     using ProjectEulerSolutions._010;
     using ProjectEulerSolutions._011;
     using ProjectEulerSolutions._012;
+    using ProjectEulerSolutions._013;
 
     [TestFixture]
     class EulerTests
@@ -48,5 +49,7 @@ namespace ProjectEulerSolutions
         public void Test011() => Assert.AreEqual("70600674", new Problem11().Run());
         [Test]
         public void Test012() => Assert.AreEqual("76576500", new Problem12().Run());
+        [Test]
+        public void Test013() => Assert.AreEqual("76576500", new Problem13().Run());
     }
 }
