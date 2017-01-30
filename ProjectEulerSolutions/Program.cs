@@ -19,12 +19,14 @@ namespace ProjectEulerSolutions
     using ProjectEulerSolutions._012;
     using ProjectEulerSolutions._013;
     using ProjectEulerSolutions._014;
+    using ProjectEulerSolutions._015;
+
 
     class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine(new Problem14().Run());
+            Console.WriteLine(new Problem15().Run());
             Console.ReadKey();
         }
     }

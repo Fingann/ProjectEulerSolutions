@@ -61,6 +61,7 @@
     <Compile Include="012\Problem12.cs" />
     <Compile Include="013\Problem13.cs" />
     <Compile Include="014\Problem14.cs" />
+    <Compile Include="015\Problem15.cs" />
     <Compile Include="EulerSolution.cs" />
     <Compile Include="EulerTests.cs" />
     <Compile Include="Program.cs" />
