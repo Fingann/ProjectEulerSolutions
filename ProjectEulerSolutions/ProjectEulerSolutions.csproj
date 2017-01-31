@@ -62,6 +62,10 @@
     <Compile Include="013\Problem13.cs" />
     <Compile Include="014\Problem14.cs" />
     <Compile Include="015\Problem15.cs" />
+    <Compile Include="016\Problem16.cs" />
+    <Compile Include="017\Problem17.cs" />
+    <Compile Include="018\Problem18.cs" />
+    <Compile Include="020\Problem20.cs" />
     <Compile Include="EulerSolution.cs" />
     <Compile Include="EulerTests.cs" />
     <Compile Include="Program.cs" />
@@ -79,6 +83,9 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="019\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

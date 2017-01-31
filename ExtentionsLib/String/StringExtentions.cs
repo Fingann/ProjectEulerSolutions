@@ -14,5 +14,11 @@ namespace ExtentionsLib.String
             int number;
             return int.TryParse(value, out number);
         }
+        public static int ToInteger(this string value)
+        {
+            int number;
+            int.TryParse(value, out number);
+            return number;
+        }
     }
 }
