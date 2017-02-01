@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 
 namespace ProjectEulerSolutions._021
 {
+    using System.Xml.Serialization;
+
     class Problem21 : IEulerSolution
     {
 
@@ -14,7 +16,7 @@ namespace ProjectEulerSolutions._021
         {
             
                 
-                var amicablePairs = FindAmicablePairs(10000);
+                var amicablePairs = GetPairs(10000);
 
             int sum = 0 ;
             foreach (var AmicablePair in amicablePairs)
@@ -27,13 +29,22 @@ namespace ProjectEulerSolutions._021
             return sum.ToString();
         }
 
-        public IEnumerable<Tuple<int, int>> FindAmicablePairs (int maxNumber)
+        private static IEnumerable<Tuple<int, int>> GetPairs(int max)
         {
-
-            var amicablePairs = Enumerable.Range(0, maxNumber).Select(x => new Tuple<int, int>(x, SumProperDivisors(x))).Where(x => SumProperDivisors(x.Item2) == x.Item1);
             
 
-            return amicablePairs;
+            List<int> divsums =
+                Enumerable.Range(0, max + 1).Select(i => ProperDivisors(i).Sum()).ToList();
+
+           
+            for (int i = 1; i < divsums.Count; i++)
+            {
+                int sum = divsums[i];
+                if (i < sum && sum <= divsums.Count && divsums[sum] == i)
+                {
+                    yield return new Tuple<int, int>(i, sum);
+                }
+            }
         }
 
 
@@ -41,20 +52,14 @@ namespace ProjectEulerSolutions._021
 
         public int SumProperDivisors(int number)
         {
-            return FindProperDivisors(number).Sum();
+            return ProperDivisors(number).Sum();
         }
 
-        public List<int> FindProperDivisors(int number)
+        private static IEnumerable<int> ProperDivisors(int number)
         {
-            var tempList = new List<int>();
-            for (int i = 1; i < number; i++)
-            {
-                if(number % i == 0)
-                {
-                    tempList.Add(i);
-                }
-            }
-            return tempList;
+            return
+                Enumerable.Range(1, number / 2)
+                    .Where(divisor => number % divisor == 0);
         }
     }
 }
