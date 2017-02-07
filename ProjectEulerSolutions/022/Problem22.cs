@@ -2,7 +2,6 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Diagnostics;
     using System.IO;
     using System.Linq;
     using System.Reflection;
@@ -14,20 +13,24 @@
         private readonly Func<string, int, Tuple<string, long>> SumNameValue =
             (a, b) =>
                 {
-                    return new Tuple<string, long>(
-                               a,
-                               Encoding.ASCII.GetBytes(a.ToCharArray())
+                    long nameScore = Encoding.ASCII.GetBytes(a.ToCharArray())
                                    .Select(x => int.Parse(x.ToString()) - 64)
-                                   .Aggregate((i, j) => i + j) * (b + 1));
+                                   .Aggregate((i, j) => i + j) * (b + 1);
+
+                    return new Tuple<string, long>(a, nameScore);
                 };
 
         public string Run()
         {
-            
-            var nameScores = this.SortNames().Select((a, b) => this.SumNameValue(a, b));
-            var sum = nameScores.Select(x => x.Item2).Aggregate((a, b) => a + b).ToString();
-           
-            return sum;
+            //b is index
+            var nameScores = this.SortNames()
+                .Select((a, b) => this.SumNameValue(a, b));
+
+            var sum = nameScores
+                .Select(x=> x.Item2)
+                .Aggregate((a, b) => a + b);
+
+            return sum.ToString();
         }
 
         public IEnumerable<string> SortNames()
@@ -45,8 +48,8 @@
                 }
             }
 
-             //Sorting the names
-            return Regex.Matches(text, "\\w+").Cast<Match>().Select(match => match.Value).OrderBy(x => x); ;
+            // Sorting the names
+            return Regex.Matches(text, "\\w+").Cast<Match>().Select(match => match.Value).OrderBy(x => x);
         }
     }
 }

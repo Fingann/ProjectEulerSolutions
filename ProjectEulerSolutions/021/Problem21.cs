@@ -36,7 +36,6 @@ namespace ProjectEulerSolutions._021
             List<int> divsums =
                 Enumerable.Range(0, max + 1).Select(i => ProperDivisors(i).Sum()).ToList();
 
-           
             for (int i = 1; i < divsums.Count; i++)
             {
                 int sum = divsums[i];

@@ -26,12 +26,14 @@ namespace ProjectEulerSolutions
     using ProjectEulerSolutions._020;
     using ProjectEulerSolutions._021;
     using ProjectEulerSolutions._022;
+    using ProjectEulerSolutions._023;
+    using ProjectEulerSolutions._024;
 
     class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine(new Problem22().Run());
+            Console.WriteLine(new Problem24().Run());
             Console.ReadKey();
         }
     }
